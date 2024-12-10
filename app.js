@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { CustomerRouter }  from './modules/customer/customer.router.js';
+import { TreeRouter } from './modules/tree/tree.router.js';
 // import { CustomerRouter } from './modules/customer/customer.router.js';
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // Mount the customer routes
 app.use('/api/customers',CustomerRouter);
+app.use('/api/trees',TreeRouter);
 
 // Start the server
 // const PORT = process.env.PORT || 4000;
