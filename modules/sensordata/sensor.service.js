@@ -1,4 +1,4 @@
-import { Sensor } from "./sensor.model.js";
+import  Sensor  from "./sensor.model.js";
 
 // Fetch all sensor data from DB
 const getSensorDataFromDB = async () => {
