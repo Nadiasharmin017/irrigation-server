@@ -41,6 +41,9 @@ const deleteCustomer = async (req, res) => {
 const updateCustomer = async (req, res) => {
   try {
     const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send({ message: 'Invalid user ID' });
+    }
     const updatedData = req.body;
     const result = await CustomerServices.updateCustomerInDB(id, updatedData);
     if (!result) {

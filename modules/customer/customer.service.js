@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Customer } from './customer.model.js'; // Again, ensure the correct path
 
 
@@ -26,7 +27,10 @@ const createCustomerInDB = async (customerData) => {
 // PUT: Update an existing customer's data
 const updateCustomerInDB = async (id, updatedData) => {
   try {
-    return await Customer.findByIdAndUpdate(id, updatedData, { new: true });
+    
+    const objectId = new mongoose.Types.ObjectId(id);
+    
+    return await Customer.findByIdAndUpdate(objectId, updatedData, { new: true });
   } catch (error) {
     throw new Error('Error updating customer');
   }
@@ -35,11 +39,20 @@ const updateCustomerInDB = async (id, updatedData) => {
 // DELETE: Remove a customer from the database
 const deleteCustomerFromDB = async (id) => {
   try {
-    return await Customer.findByIdAndDelete(id);
+    // Convert string id to ObjectId (to work with MongoDB's default _id field)
+    const objectId = new mongoose.Types.ObjectId(id);
+
+    // Use `findByIdAndDelete` to delete the customer by ObjectId (_id field)
+    const deletedCustomer = await Customer.findByIdAndDelete(objectId);
+
+    // Return the deleted customer, or null if not found
+    return deletedCustomer;
   } catch (error) {
-    throw new Error('Error deleting customer');
+    console.error("Error in deleteCustomerById:", error);
+    throw error; // Rethrow error to be handled by the controller
   }
 };
+
 
 export const CustomerServices = {
   getCustomersFromDB,
