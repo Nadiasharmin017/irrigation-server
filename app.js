@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { CustomerRouter }  from './modules/customer/customer.router.js';
 import { TreeRouter } from './modules/tree/tree.router.js';
+import { SensorRouter } from './modules/sensordata/sensor.router.js';
 // import { CustomerRouter } from './modules/customer/customer.router.js';
 
 const app = express();
@@ -18,14 +19,8 @@ app.use(express.json());
 // Mount the customer routes
 app.use('/api/customers',CustomerRouter);
 app.use('/api/trees',TreeRouter);
+app.use('/api/sensors',SensorRouter);
 
-// Start the server
-// const PORT = process.env.PORT || 4000;
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}`);
-// });
-
-// Initialize app and middleware
 
 // Routing
 app.get('/', (req, res) => {
