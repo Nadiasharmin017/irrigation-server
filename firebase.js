@@ -1,5 +1,5 @@
 import admin from "firebase-admin";
-import serviceAccount from "./esp8266bynasim-firebase-adminsdk-cozvg-fe1cfdab58.json" with { type: "json" };
+import serviceAccount from "./esp8266bynasim-firebase-adminsdk-cozvg-6aebddec3c.json" with { type: "json" };
 
 
 

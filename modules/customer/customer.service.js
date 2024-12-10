@@ -13,8 +13,10 @@ const getCustomersFromDB = async () => {
 // POST: Add a new customer to the database
 const createCustomerInDB = async (customerData) => {  
   try {
+    console.log(customerData);
     const newCustomer = new Customer(customerData);
     const result =  await newCustomer.save();
+    
     return result;
   } catch (error) {
     throw new Error('Error creating customer');
